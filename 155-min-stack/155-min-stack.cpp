@@ -1,31 +1,39 @@
+
 class MinStack {
 private:
     int tp;
-    int arr[30000];
+    vector<vector<int>> arr;
 public:
     MinStack() {
         tp = -1;
+        arr = vector<vector<int>>(30000, vector<int>(2,0));
     }
     
     void push(int val) {
-        arr[++tp] = val;
+        tp++;
+        arr[tp][0] = val;
+        if (tp==0){
+            arr[tp][1] = val;
+        }
+        else{
+            arr[tp][1] = min(val, arr[tp-1][1]);
+        }
     }
     
     void pop() {
-        tp--;;
+        tp--;
     }
     
     int top() {
-        return arr[tp];
+        return arr[tp][0];
     }
     
     int getMin() {
-        int temp = arr[tp];
-        for(int i = tp-1;i>=0;i--)
-            temp = min(temp, arr[i]);
-        return temp;
+        return arr[tp][1];
     }
 };
+
+
 
 /**
  * Your MinStack object will be instantiated and called as such:
