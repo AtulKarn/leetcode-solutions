@@ -1,21 +1,32 @@
 class Solution {
 public:
-    bool isHappy(int n) {
-        unordered_set<int> st;
-        while(n != 1){
-            int sum=0, temp = n;
-            while(temp){
-                sum += (temp%10)*(temp%10);
-                temp /= 10;
-            }
-            if (st.find(sum) == st.end()){
-                st.insert(sum);
-                n = sum;
-            }
-            else{
-                return false;
-            }
+    int sumOfSquares(int n){
+        int sum=0;
+        while(n){
+            sum += (n%10)*(n%10);
+            n /= 10;
         }
-        return true;
+        return sum;
+    }
+    bool isHappy(int n) {
+        // unordered_set<int> st;
+        // while(n != 1){
+        //     int sum = sumOfSquares(n);
+        //     if (st.find(sum) == st.end()){
+        //         st.insert(sum);
+        //         n = sum;
+        //     }
+        //     else{
+        //         return false;
+        //     }
+        // }
+        // return true;
+        
+        int slow = n, fast = sumOfSquares(n);
+        while(fast!=1 && slow!=fast){
+            slow = sumOfSquares(slow);
+            fast = sumOfSquares(sumOfSquares(fast));
+        }
+        return fast == 1;
     }
 };
