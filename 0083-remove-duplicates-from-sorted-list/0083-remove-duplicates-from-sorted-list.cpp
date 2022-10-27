@@ -13,7 +13,6 @@ public:
     ListNode* deleteDuplicates(ListNode* head) {
         if (head==NULL)
             return head;
-        ListNode* head2 = head;
         ListNode* temp=head;
         while(temp != NULL && temp->next!=NULL){
             if (temp->val == temp->next->val)
@@ -21,6 +20,6 @@ public:
             else
                 temp = temp->next;
         }
-        return head2;
+        return head;
     }
 };
