@@ -15,15 +15,11 @@ public:
             return head;
         ListNode* head2 = head;
         ListNode* temp=head;
-        while(temp->next!=NULL){
+        while(temp != NULL && temp->next!=NULL){
             if (temp->val == temp->next->val)
                 temp->next = temp->next->next;
             else
                 temp = temp->next;
-            if (temp==NULL)
-                break;
-            if (temp->next==NULL)
-                break;
         }
         return head2;
     }
