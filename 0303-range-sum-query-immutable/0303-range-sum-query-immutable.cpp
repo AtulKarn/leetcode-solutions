@@ -2,11 +2,16 @@ class NumArray {
     vector<int> nums;
 public:
     NumArray(vector<int>& nums) {
+        for(int i=1;i<nums.size();i++){
+            nums[i] = nums[i] + nums[i-1];
+        }
         this->nums = nums;
     }
     
     int sumRange(int left, int right) {
-        return accumulate(nums.begin()+left, nums.begin()+right+1, 0);
+        if(left==0)
+            return nums[right];
+        return nums[right] - nums[left-1];
     }
 };
 
