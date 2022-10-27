@@ -24,6 +24,5 @@ public:
         n = ((n & 0xcccccccc) >> 2) | ((n & 0x33333333) << 2);
         n = ((n & 0xaaaaaaaa) >> 1) | ((n & 0x55555555) << 1);
         return n;
-        
     }
 };
